@@ -10,9 +10,9 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 #database configurations:
 DATABASE = 'mysql://'
-USERNAME = 'root'
+USERNAME = 'user'
 PASSWORD = 'wcomp'
-HOST = '127.0.0.1:3306'
+HOST = 'instance35940.db.xeround.com.:4377'
 DB_SCHEME = 'wc'
 SQLALCHEMY_DATABASE_URI = DATABASE + USERNAME + ':' + PASSWORD + '@' + HOST + '/' + DB_SCHEME + '?charset=utf8'
 
