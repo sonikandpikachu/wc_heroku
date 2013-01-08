@@ -1,1 +1,1 @@
-web: python wcapp/views.py
+web: python views.py

@@ -5,8 +5,6 @@ Created on Sep 18, 2012
 settings for project. In production version need to move main part of settings to .config file
 '''
 
-import os
-
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -21,9 +19,7 @@ SQLALCHEMY_DATABASE_URI = DATABASE + USERNAME + ':' + PASSWORD + '@' + HOST + '/
 print 'hi!'
 
 #flask configurations:
-app = Flask('wcapp',
-    template_folder=os.path.join('wcapp', 'templates'),
-    static_folder=os.path.join('wcapp', 'static'))
+app = Flask('wcapp')
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'  # test
 app.config.from_object(__name__)
 db = SQLAlchemy(app)
