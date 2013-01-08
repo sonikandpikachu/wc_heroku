@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang = "ru-RU">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+<script type="text/javascript" src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+<title>What Computer</title>
+</head>
+
+<body>
+<div id = "wrapper">
+<div id = "header"> <img src="{{ url_for('static', filename='img/main_header.png') }}" alt="What Computer"/> </div>
+<div id = "content">
+  <div class="comp">
+    <div class = "image"> <img src="{{ url_for('static', filename='img/computers/'+ small_comp.id +'_img/main.jpg') }}" alt = "Рисунок"/></div>
+    <div class = "descriptionSection">
+      <div class="title">
+        <div class = "name" style="font-size:18px"> {{ small_comp.name }} </div>
+        <div class="classification" style="clear:left; top:0px">
+          <div class="cover"></div>
+          <div class="progress" style="width: 100%;"></div>
+        </div>
+      </div>
+      <ul class = "description">
+            <li>
+              <div class="paramName">Процессор:</div>
+              <div class="paramValue"> {{ small_comp.cpu_name }} {{ small_comp.cpu_model }}, {{ small_comp.cpu_frequency }} Ггц</div>
+              <div class="paramStars">
+                <div class="cover"></div>
+                <div class="progress" style="width: {{ small_comp.cpu_dss }}%;"></div>
+              </div>
+            </li>
+            <li>
+              <div class="paramName">Оперативная память:</div>
+              <div class="paramValue"> {{ small_comp.ram_amount }} Gb </div>
+              <div class="paramStars">
+                <div class="cover"></div>
+                <div class="progress" style="width: {{ small_comp.ram_dss }}%;"></div>
+              </div>
+            </li>
+            <li>
+              <div class="paramName">Жесткий диск:</div>
+              <div class="paramValue"> {{ small_comp.hdd_capacity }} Gb</div>
+              <div class="paramStars">
+                <div class="cover"></div>
+                <div class="progress" style="width: {{ small_comp.hdd_dss }}%;"></div>
+              </div>
+            </li>
+            <li>
+              <div class="paramName">Видеокарта:</div>
+              <div class="paramValue"> {{ small_comp.vga }} {{ small_comp.vga_amount }} </div>
+              <div class="paramStars">
+                <div class="cover"></div>
+                <div class="progress" style="width: {{ small_comp.vga_dss }}%;"></div>
+              </div>
+            </li>
+            <li>
+              <div class="paramName"> Операционная система </div>
+              <div class="paramValue"> {{ small_comp.os }}</div>
+              <div class="paramStars">
+                <div class="cover"></div>
+                <div class="progress" style="width: {{ small_comp.os_dss }}%;"></div>
+              </div>
+            </li>
+          </ul>
+    </div>
+    <ul class = "answerButtons">
+      <li> 
+            <div class = "price">{{ small_comp.price }} грн</div> 
+            <div class = "priceRange">{{ small_comp.max_price }} - {{ small_comp.min_price }} </div>
+      </li>
+      <li> <a  href = "Comp.html"> <img src="{{ url_for('static', filename='img/greenButtons/wNextButton1.png') }}" alt="Далее" 
+                                onMouseOver="this.src='{{ url_for('static', filename='img/greenButtons/wNextButton2.png') }}'" 
+                                onMouseOut="this.src='{{ url_for('static', filename='img/greenButtons/wNextButton1.png') }}'"
+                                onMouseDown="this.src='{{ url_for('static', filename='img/greenButtons/wNextButton3.png') }}'"
+                                /> </a> </li>
+    </ul>
+  </div>
+  <div id="tabContainer">
+    <div class="tabs">
+      <ul>
+        <li id="parametrs" class="tabActiveHeader">Описание</li>
+        <li id="stores">Магазины</li>
+      </ul>
+    </div>
+    <div class="tabscontent">
+      <div class="tabpage" id="parametrs_content">
+        <table cellspacing="0" id="parametrs">
+          {% for part in big_comp %}
+            <tr class = "gray">
+              <td class="paramName">{{ part }}</td>
+              <td class="paramSeparator"></td>
+              <td class="paramValue"></td>
+            </tr>
+            {% for key in big_comp[part] %}
+              <tr class = "gray">
+                <td class="paramName">{{ key }}</td>
+                <td class="paramSeparator"></td>
+                <td class="paramValue"> {{ big_comp[part][key] }}</td>
+              </tr>
+            {% endfor %}
+          {% endfor %}
+        </table>
+        </div>
+      <div class="tabpage" id="stores_content">
+        <table cellspacing="0" id="stores">
+          {% for cc in conccomps %}
+            <tr class = "gray">
+              <td class="storeLogo"><img src="{{ url_for('static', filename='img/7276.png') }}" /></td>
+              <td class="paramSeparator"></td>
+              <td class="storeInfo"> <a  href = "#"> <span class = "storeName"> {{ cc.shop.name }}</td>
+              <td class="paramSeparator"></td>
+              <td class="storePrice">{{ cc.price_grn }} Грн</td> 
+            </tr>
+          {% endfor %}
+         </table>
+      </div>
+    </div>
+  </div>
+  <div id = "footer"> Developed by Sonik and Pikachu </div>
+</div>
+<script src="tabs.js"></script>
+</body>
+</html>
